@@ -8,7 +8,7 @@ namespace Projekt.API.Data.Models
         public string Name { get; set; }
         public string Dean { get; set; }
 
-        //Define Reference with Student table
+        //Define Reference with University table
         public List<University> Faculties { get; set; }
     }
 }

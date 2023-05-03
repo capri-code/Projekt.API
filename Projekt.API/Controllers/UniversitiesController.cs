@@ -35,13 +35,14 @@ namespace Projekt.API.Controllers
         [HttpPost("AddUniversity")]
         public IActionResult AddUniversity([FromBody] PostUniversityDTO payload)
         {
-            //1. Krijo nje objekt Student me te dhenat e marra nga payload
+            //1. Krijo nje objekt University me te dhenat e marra nga payload
             University newUniversity = new University()
             {
                 UniversityName = payload.UniversityName,
                 Code = payload.Code,
                 UniversityDateCreated = payload.UniversityDateCreated,
                 DateCreated = DateTime.UtcNow,
+                Rector = payload.Rector,
 
                 FacultyId = payload.FacultyId
             };
@@ -60,12 +61,13 @@ namespace Projekt.API.Controllers
             if (university == null)
                 return NotFound();
 
-            //2. Perditesojme Studentin e DB me te dhenat e payload-it
+            //2. Perditesojme Universitetin e DB me te dhenat e payload-it
             university.UniversityName = payload.UniversityName;
             university.Code = payload.Code;
             university.UniversityDateCreated = payload.UniversityDateCreated;
+            university.Rector = payload.Rector;
 
-            //Add Refrence to Subject Id
+            //Add Refrence to Faculty Id
             university.FacultyId = payload.FacultyId;
 
             //3. Ruhen te dhenat ne database
@@ -83,7 +85,7 @@ namespace Projekt.API.Controllers
             if (university == null)
                 return NotFound();
 
-            //2. Fshijme universityin nga DB
+            //2. Fshijme universitetin nga DB
             _appDbContext.Universities.Remove(university);
             _appDbContext.SaveChanges();
 

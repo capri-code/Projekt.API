@@ -48,7 +48,6 @@ namespace Projekt.API.Controllers
                 Name = payload.Name,
                 Code = payload.Code,
                 Dean = payload.Dean,
-                DateCreated = DateTime.UtcNow
             };
 
             _appDbContext.Faculties.Add(newFaculty);
@@ -63,7 +62,7 @@ namespace Projekt.API.Controllers
             //1. Duke perdour ID marrim te dhenat nga databaza
             var faculty = _appDbContext.Faculties.FirstOrDefault(x => x.Id == id);
 
-            //2. Perditesojme Facultyin e DB me te dhenat e payload-it
+            //2. Perditesojme Fakultetin e DB me te dhenat e payload-it
             if (faculty == null)
                 return NotFound();
 
